@@ -14,6 +14,11 @@ namespace NumbersGame.Validators
         public bool Validate(string value)
         {
             int count = 0;
+            if (value.Length > 30)
+            {
+                Error = "Name should be < 30. Sorry";
+                return false;
+            }
             for (int i = 0; i < value.Length; i++)
             {
                 if (Char.IsLetter(value[i]) || value[i] == '-')
@@ -29,3 +34,4 @@ namespace NumbersGame.Validators
         }
     }
 }
+

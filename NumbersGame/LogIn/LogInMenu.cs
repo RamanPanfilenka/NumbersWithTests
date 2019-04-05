@@ -117,7 +117,7 @@ namespace NumbersGame
                         return;
                     }
                     RestorePassword();
-                    break;
+                    return;
                 }
             }
 

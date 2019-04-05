@@ -14,9 +14,9 @@ namespace NumbersGame.Validators
 
         public bool Validate(string value)
         {
-            if (value.Length == 0 || value.Length < 4)
+            if (value.Length == 0 || value.Length < 4 || value.Length > 20)
             {
-                Error = "Error. Not enaeble length of login. It's should be > 6";
+                Error = "Error. Not enaeble length of login. It's should be > 6 and < 20";
                 return false;
             }
             var UserRepo = new UsersRepository();

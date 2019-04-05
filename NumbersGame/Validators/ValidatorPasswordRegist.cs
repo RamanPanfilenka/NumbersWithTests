@@ -23,9 +23,9 @@ namespace NumbersGame.Validators
                     break;
                 }
             }
-            if (value.Length == 0 || value.Length < 6 || !correct)
+            if (value.Length == 0 || value.Length < 6 || !correct || value.Length > 30)
             {
-                Error = "Error. Not enaeble length. It's should be > 6 and don't contain ?, |, and spaces";
+                Error = "Error. Not enaeble length. It's should be > 6, < 30 and not contain ?, |, and spaces";
                 return false;
             }
 
