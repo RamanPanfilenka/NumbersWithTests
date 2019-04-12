@@ -1,4 +1,5 @@
 ﻿using Dal.Helpers;
+using Dal.IRepository;
 using Dal.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Dal.Repositorys
 {
-    public class UsersRepository: BaseRepository<User>
+    public class UsersRepository: BaseRepository<User>, IUsersRepository
     {
         private static string folderName = "Users";
 

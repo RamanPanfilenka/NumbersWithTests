@@ -1,4 +1,5 @@
 ﻿using Dal.Helpers;
+using Dal.IRepository;
 using Dal.Models;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace Dal.Repositorys
 {
-    public abstract class BaseRepository <T> where T: BaseModel
+    public abstract class BaseRepository<T>: IBaseRepository<T>  where T : BaseModel
     {
-        private string RepositoryPath;
+        private string RepositoryPath;  
         private string appPath = Environment.CurrentDirectory;
         private string FolderName;
         public BaseRepository(string folderName)

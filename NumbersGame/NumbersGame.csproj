@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\LogInMenuEnum.cs" />
     <Compile Include="Game\GameNumber.cs" />
     <Compile Include="Readers\ReadInteger.cs" />
     <Compile Include="Readers\ReadString.cs" />

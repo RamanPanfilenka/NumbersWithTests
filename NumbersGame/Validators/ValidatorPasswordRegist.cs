@@ -1,4 +1,6 @@
-﻿using NumberGame.Validators;
+﻿using Dal.IRepository;
+using Dal.Repositorys;
+using NumberGame.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,16 @@ namespace NumbersGame.Validators
     {
         public string Error { get; set; }
 
-        public bool Validate(string value)
+        public bool Validate(string value, IUsersRepository users = null)
         {
             bool correct = true;
             char[] mass = {' ', '?', '|' };
+
+            if (value == "restore")
+            {
+                Error = "Error. You can't use this password. Pls change it.";
+                return false;
+            }
             for (int i = 0; i < mass.Length; i++)
             {
                 if (value.IndexOf(mass[i]) != -1)
@@ -29,11 +37,6 @@ namespace NumbersGame.Validators
                 return false;
             }
 
-            if ( value == "restore")
-            {
-                Error = "Error. You can't use this password. Pls change it.";
-                return false;
-            }
             return true;
         }
     }

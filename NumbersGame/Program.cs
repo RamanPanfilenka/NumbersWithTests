@@ -1,7 +1,8 @@
 ﻿using Dal.Models;
 using Dal.Repositorys;
 using NumberGame.Validators;
-using NumbersGame;
+using NumbersGame.LogIn;
+using NumberGame.Game;
 using System;
 using System.Collections.Generic;
 using System.Linq;

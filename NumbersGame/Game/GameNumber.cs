@@ -7,11 +7,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace NumberGame
+namespace NumberGame.Game
 {
-    class GameNumber
+    public class GameNumber
     {
-        private bool win = false;
+        public bool win = false;
         private int Min;
         private int Max;
         private int attempCount;
@@ -35,6 +35,8 @@ namespace NumberGame
 
             EndGame();
 
+
+            Console.ReadLine();
         }
 
         private void FirstPlayerStep()
@@ -84,7 +86,7 @@ namespace NumberGame
             } while ((player1Number != player2Number) && (attemp < attempCount));
         }
 
-        private void EndGame()
+        public void EndGame()
         {
             if (win)
             {
@@ -105,8 +107,8 @@ namespace NumberGame
                 else
                     Player1.Score = 0;
 
-                Player2.Stats.CalcStats(true);
-                Player1.Stats.CalcStats(false);
+                if(Player2.Stats != null) Player2.Stats.CalcStats(true);
+                if(Player1.Stats != null) Player1.Stats.CalcStats(false);
             }
             else
             { 
@@ -127,10 +129,16 @@ namespace NumberGame
                 else {
                     Player2.Score = 0;
                 }
-                Player2.Stats.CalcStats(false);
-                Player1.Stats.CalcStats(true);
+                if (Player1.Stats != null) Player2.Stats.CalcStats(false);
+                if (Player2.Stats != null) Player1.Stats.CalcStats(true);
             }
+            if (Player1.Stats != null && Player2.Stats != null) SaveAll();
+            
 
+        }
+
+        private void SaveAll()
+        {
             var UserRepo = new UsersRepository();
             var StatsRepo = new StatsRepository();
 
@@ -142,14 +150,18 @@ namespace NumberGame
 
             StatsRepo.Save(Player1.Stats);
             StatsRepo.Save(Player2.Stats);
-
-
-            Console.ReadLine();
         }
 
-        
+        public User GetPlayer1()
+        {
+            return Player1;
+        }
 
-        private int AttempCalculator(int Min, int Max)
+        public User GetPlayer2()
+        {
+            return Player2;
+        }
+        public int AttempCalculator(int Min, int Max)
         {
             int length = Max - Min + 1;
             int power = 1;

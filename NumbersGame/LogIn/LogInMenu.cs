@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 using Dal.Repositorys;
 using NumbersGame.Readers;
 using NumberGame.Validators;
+using NumbersGame.Enum;
 
-namespace NumbersGame
+namespace NumbersGame.LogIn
 {
     public class LogInMenu
     {
@@ -32,11 +33,11 @@ namespace NumbersGame
                 Console.WriteLine("2 - Create new user");
                 Console.WriteLine("3 - Play as a guest");
                 var validatorUserEnter = new ValidatorEnterUser();
-                var UserChoose = ReadInteger.FromConsole(validatorUserEnter);
+                var UserChoose = (LogInMenuEnum)ReadInteger.FromConsole(validatorUserEnter);
                 Console.Clear();
                 switch (UserChoose)
                 {
-                    case 1:
+                    case LogInMenuEnum.LogIn:
                         while (!LogIn)
                         {
                             TryLogIn();
@@ -48,15 +49,15 @@ namespace NumbersGame
                         UserRepo.Save(user);
                         Console.WriteLine($"Congratilation, {user.Name}! LogIn is succsesful");
                         break;
-                    case 2:
+                    case LogInMenuEnum.Create:
                         Registration();
                         user = new User(Name, Login, Password);
                         UserRepo.Save(user);
                         Console.WriteLine($"Congratilation, {Name}! Registration is succsesful");
                         Console.ReadLine();
                         Console.Clear();
-                        goto case 1;
-                    case 3:
+                        goto case LogInMenuEnum.LogIn;
+                    case LogInMenuEnum.Guest:
                         Console.WriteLine("You enter as a guest");
                         LogIn = true;
                         break;

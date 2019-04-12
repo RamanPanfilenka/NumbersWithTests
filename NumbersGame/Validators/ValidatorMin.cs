@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dal.IRepository;
+using Dal.Repositorys;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NumberGame.Validators
 {
-    class ValidatorMin : IValidator<int>
+    public class ValidatorMin : IValidator<int>
     {
         private int _min { get; set; }
         public string Error { get; set; }
@@ -16,7 +18,7 @@ namespace NumberGame.Validators
             _min = min;
         }
 
-        public bool Validate(int value)
+        public bool Validate(int value, IUsersRepository users = null)
         {
             if (value <= _min)
             {

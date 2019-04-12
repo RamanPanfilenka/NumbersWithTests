@@ -1,4 +1,5 @@
-﻿using Dal.Repositorys;
+﻿using Dal.IRepository;
+using Dal.Repositorys;
 using NumberGame.Validators;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,25 @@ namespace NumbersGame.Validators
     {
         public string Error { get; set; }
 
-        public bool Validate(string value)
+        public bool Validate(string value, IUsersRepository UserRepo = null)
         {
-            if (value.Length == 0 || value.Length < 4 || value.Length > 20)
+            bool correct = true;
+            char[] mass = { ' ', '?', '|' };
+
+            for (int i = 0; i < mass.Length; i++)
             {
-                Error = "Error. Not enaeble length of login. It's should be > 6 and < 20";
+                if (value.IndexOf(mass[i]) != -1)
+                {
+                    correct = false;
+                    break;
+                }
+            }
+
+            if (value.Length == 0 || value.Length < 4 || value.Length > 20 || !correct)
+            {
+                Error = "Error. Not enaeble login. It's should be > 6 and < 20 and not contain spaces, ? and |";
                 return false;
             }
-            var UserRepo = new UsersRepository();
             if (UserRepo.Get(value) != null)
             {
                 Error = "Error. This login is already exist. Pls enter some different.";

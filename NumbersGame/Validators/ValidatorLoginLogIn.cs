@@ -1,4 +1,5 @@
-﻿using Dal.Repositorys;
+﻿using Dal.IRepository;
+using Dal.Repositorys;
 using NumberGame.Validators;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,8 @@ namespace NumbersGame.Validators
     {
         public string Error { get; set; }
 
-        public bool Validate(string value)
+        public bool Validate(string value, IUsersRepository UserRepo = null)
         {
-            var UserRepo = new UsersRepository();
             if (value != "exit")
             {
                 if (UserRepo.Get(value) == null || String.IsNullOrEmpty(value))

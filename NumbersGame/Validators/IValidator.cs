@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dal.IRepository;
+using Dal.Repositorys;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,7 @@ namespace NumberGame.Validators
     {
         string Error { get; set; }
 
-        bool Validate(T value);
+        bool Validate(T value , IUsersRepository users = null);
 
     }
 }

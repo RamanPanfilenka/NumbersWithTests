@@ -1,4 +1,5 @@
-﻿using Dal.Models;
+﻿using Dal.IRepository;
+using Dal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dal.Repositorys
 {
-    public class StatsRepository : BaseRepository<Stats>
+    public class StatsRepository : BaseRepository<Stats>, IStatsRepository
     {
         private static string folderName = "Stats";
 

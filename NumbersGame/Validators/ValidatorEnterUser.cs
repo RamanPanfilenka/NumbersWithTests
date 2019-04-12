@@ -1,4 +1,6 @@
-﻿using NumberGame.Validators;
+﻿using Dal.IRepository;
+using Dal.Repositorys;
+using NumberGame.Validators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace NumbersGame.Validators
     {
         public string Error { get; set;}
 
-        public bool Validate(int value)
+        public bool Validate(int value, IUsersRepository users = null)
         {
             if (value < 1 || value > 3)
             {

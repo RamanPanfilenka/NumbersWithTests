@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dal.IRepository;
+using Dal.Repositorys;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NumberGame.Validators
 {
-    class ValidatorMinMax : IValidator<int>
+    public class ValidatorMinMax : IValidator<int>
     {
         private int _min;
         private int _max;
@@ -19,7 +21,7 @@ namespace NumberGame.Validators
             _max = max;
         }
 
-        public bool Validate(int value)
+        public bool Validate(int value, IUsersRepository users = null)
         {
             if (value > _max || value < _min)
             {
